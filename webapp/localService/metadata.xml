@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+	<edmx:DataServices m:DataServiceVersion="2.0" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+		<Schema Namespace="DealModel" xmlns="http://schemas.microsoft.com/ado/2008/09/edm"
+			xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+			<EntityType Name="DealLeasing">
+				<Key>
+					<PropertyRef Name="DealId"/>
+				</Key>
+				<Property Name="DealId" Type="Edm.String" MaxLength="50"/>
+				<Property Name="Prospect" Type="Edm.String" MaxLength="50"/>
+				<Property Name="Description" Type="Edm.String" MaxLength="50"/>
+				<Property Name="Quantity" Type="Edm.Int32" MaxLength="5"/>
+				<Property Name="Currency" Type="Edm.String" MaxLength="5"/>
+				<Property Name="ClosingDate" Type="Edm.Decimal" MaxLength="5"/>
+				<Property Name="Status" Type="Edm.String" MaxLength="5"/>
+			</EntityType>
+			<EntityContainer Name="DealCreate" m:IsDefaultEntityContainer="true" xmlns:p7="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+				<EntitySet EntityType="DealModel.DealLeasing" Name="DealLeasings"/>
+			</EntityContainer>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

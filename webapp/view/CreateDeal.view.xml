@@ -1,0 +1,172 @@
+<!--<mvc:View-->
+<!--	xmlns="sap.m"-->
+<!--	xmlns:mvc="sap.ui.core.mvc">-->
+
+<!--	<Page-->
+<!--		id="creatDeal"-->
+<!--		enableScrolling="true"-->
+<!--		>-->
+<!--		<content>-->
+<!--			<Button icon="sap-icon://add" type="Emphasized">-->
+<!--		</content>-->
+<!--	</Page>-->
+<!--</mvc:View>-->
+
+<mvc:View
+	xmlns:m="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.uxap"
+	xmlns:u="sap.ui.unified"
+	xmlns:uxap="sap.uxap"
+	xmlns:f="sap.ui.layout.form">
+	<m:Page
+		title="Leasing Deal: New">
+		
+		<ObjectPageLayout enableLazyLoading="true">
+				<headerTitle>
+					<ObjectPageHeader objectTitle="Opportunity Details"></ObjectPageHeader>
+				</headerTitle>
+					
+					
+					<sections>
+					<ObjectPageSection id="generalData">
+						<subSections>
+							<ObjectPageSubSection title="General Data" mode="Expanded">
+								<blocks>
+									<ObjectPageLazyLoader>
+										<m:VBox >
+											<m:VBox>
+												<f:SimpleForm minWidth="1024" maxContainerCols="2" editable="false" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="12"
+													emptySpanL="5" emptySpanM="5" columnsL="2" columnsM="2" adjustLabelSpan="true" singleContainerFullSize="false">
+													<f:content>
+														<m:Label text="Type"/>
+														<m:Input value="Leasing Deal" enabled="false"/>
+														<m:Label text="Description"/>
+														<m:Input />
+														<m:Label text="Prospect"/>
+														<m:Input/>
+													</f:content>
+												</f:SimpleForm>
+											</m:VBox>
+										</m:VBox>
+									</ObjectPageLazyLoader>
+								</blocks>
+							</ObjectPageSubSection>
+							</subSections>
+							</ObjectPageSection>
+							<ObjectPageSection>
+								<subSections>
+							<ObjectPageSubSection title="Forecast" mode="Expanded">
+								<blocks>
+									<ObjectPageLazyLoader>
+										<m:VBox >
+											<m:VBox>
+												<f:SimpleForm minWidth="1024" maxContainerCols="2" editable="false" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="12"
+													emptySpanL="5" emptySpanM="5" columnsL="2" columnsM="2" adjustLabelSpan="true" singleContainerFullSize="false">
+													<f:content>
+														<m:Label text="Start Date"/>
+														<m:DatePicker />
+														<m:Label text="Closing Date"/>
+														<m:DatePicker/>
+													</f:content>
+												</f:SimpleForm>
+											</m:VBox>
+										</m:VBox>
+									</ObjectPageLazyLoader>
+								</blocks>
+							</ObjectPageSubSection>
+							</subSections>
+							</ObjectPageSection>
+							<ObjectPageSection>
+								<subSections>
+							<ObjectPageSubSection title="Sales Cycle" mode="Expanded">
+								<blocks>
+									<ObjectPageLazyLoader>
+										<m:VBox >
+											<m:VBox>
+												<f:SimpleForm minWidth="1024" maxContainerCols="2" editable="false" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="12"
+													emptySpanL="5" emptySpanM="5" columnsL="2" columnsM="2" adjustLabelSpan="true" singleContainerFullSize="false">
+													<f:content>
+														<m:Label text="Sales Stage"/>
+														<m:Input />
+														<m:Label text="Chance of Success"/>
+														<m:Input/>
+														<m:Label text="Status"/>
+														<m:Input/>
+													</f:content>
+												</f:SimpleForm>
+											</m:VBox>
+										</m:VBox>
+									</ObjectPageLazyLoader>
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+					<ObjectPageSection title="Items">
+						<subSections>
+							<ObjectPageSubSection class="sapUiSmallMarginTop sapUiNoContentPadding" mode="Expanded">
+								<m:Table id="itemTable">
+									<m:headerToolbar>
+										<m:Toolbar>
+											<m:Title text="Items"/>
+											<m:ToolbarSpacer/>
+											<m:Button tooltip="View Settings" icon="sap-icon://add" press="onCreateItems"/>
+										</m:Toolbar>
+									</m:headerToolbar>
+									<m:columns>
+										<m:Column id="quantity" width="8em" popinDisplay="Inline">
+											<m:Text text="Quantity"/>
+										</m:Column>
+									</m:columns>
+									<m:columns>
+										<m:Column  hAlign="Left">
+											<m:Text text="Per Diem"/>
+										</m:Column>
+									</m:columns>
+									<m:columns>
+										<m:Column hAlign="Left">
+											<m:Text text="Daily Dpp"/>
+										</m:Column>
+									</m:columns>
+									<m:columns>
+										<m:Column hAlign="Left">
+											<m:Text text="No. of Days"/>
+										</m:Column>
+									</m:columns>
+									<m:columns>
+										<m:Column>
+											<m:Text text="Unit"/>
+										</m:Column>
+									</m:columns>
+									<m:columns>
+										<m:Column id="mobTKTEventEDT"  popinDisplay="Inline" minScreenWidth="760px" demandPopin="true" hAlign="Left">
+											<m:Text text="End Date/Time"/>
+										</m:Column>
+									</m:columns>
+									<m:items>
+										<!--<m:ColumnListItem>-->
+										<!--	<m:cells>-->
+										<!--		<m:ObjectStatus id="mobTKTMU1"  />-->
+										<!--		<m:Text id="mobTKTMU2"/>-->
+										<!--		<m:Text id="mobTKTMU3"/>-->
+										<!--		<m:Text id="mobTKTMU4"/>-->
+										<!--		<m:Text id="mobTKTMU5"/>-->
+										<!--		<m:Text id="mobTKTMU6"/>-->
+										<!--		<core:Icon src="sap-icon://edit" press="onEditItem"/>-->
+										<!--		<core:Icon src="sap-icon://delete" press="onDeleteItem"/>-->
+										<!--	</m:cells>-->
+										<!--</m:ColumnListItem>-->
+									</m:items>
+								</m:Table>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+					</sections>
+					</ObjectPageLayout>
+		<!--<ObjectHeader-->
+		<!--	title="Invoice"/>-->
+		<!--<content>-->
+		<!--	<Button icon="sap-icon://add" type="Emphasized"/>-->
+		<!--</content>-->
+	</m:Page>
+</mvc:View>
