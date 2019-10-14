@@ -8,6 +8,7 @@ sap.ui.define([
 	return BaseController.extend("com.seaco.zcrmapps.zcrmapps.controller.App", {
 
 		onInit : function () {
+			// this.getModel("appView").setProperty("/layout", "OneColumn");
 			// debugger;
 			var oViewModel = new JSONModel({
 				Items : []

@@ -317,6 +317,7 @@ sap.ui.define([
 		
 		onPressAddDeal: function(oEvent){
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			this.getModel("appView").setProperty("/layout", "OneColumn");
 			oRouter.navTo("CreateDeal");
 		}
 
