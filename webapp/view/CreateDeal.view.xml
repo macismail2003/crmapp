@@ -18,7 +18,9 @@
 	xmlns="sap.uxap"
 	xmlns:u="sap.ui.unified"
 	xmlns:uxap="sap.uxap"
-	xmlns:f="sap.ui.layout.form">
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	controllerName="com.seaco.zcrmapps.zcrmapps.controller.CreateDeal">
 	<m:Page
 		title="Leasing Deal: New">
 		
@@ -105,7 +107,7 @@
 					<ObjectPageSection title="Items">
 						<subSections>
 							<ObjectPageSubSection class="sapUiSmallMarginTop sapUiNoContentPadding" mode="Expanded">
-								<m:Table id="itemTable">
+								<m:Table id="itemTable" items="{ path : 'dealItemModel>/Items'}">
 									<m:headerToolbar>
 										<m:Toolbar>
 											<m:Title text="Items"/>
@@ -114,48 +116,54 @@
 										</m:Toolbar>
 									</m:headerToolbar>
 									<m:columns>
-										<m:Column id="quantity" width="8em" popinDisplay="Inline">
+										<m:Column id="quantity">
 											<m:Text text="Quantity"/>
 										</m:Column>
 									</m:columns>
 									<m:columns>
-										<m:Column  hAlign="Left">
+										<m:Column >
 											<m:Text text="Per Diem"/>
 										</m:Column>
 									</m:columns>
 									<m:columns>
-										<m:Column hAlign="Left">
+										<m:Column>
 											<m:Text text="Daily Dpp"/>
 										</m:Column>
 									</m:columns>
 									<m:columns>
-										<m:Column hAlign="Left">
+										<m:Column>
 											<m:Text text="No. of Days"/>
 										</m:Column>
 									</m:columns>
 									<m:columns>
-										<m:Column>
-											<m:Text text="Unit"/>
+										<m:Column >
+											<m:Text text="Unit" />
 										</m:Column>
 									</m:columns>
 									<m:columns>
-										<m:Column id="mobTKTEventEDT"  popinDisplay="Inline" minScreenWidth="760px" demandPopin="true" hAlign="Left">
+										<m:Column >
 											<m:Text text="End Date/Time"/>
 										</m:Column>
 									</m:columns>
+									<m:columns>
+										<m:Column class="sapUiTinyMarginEnd" ></m:Column>
+									</m:columns>
+									<m:columns>
+										<m:Column width="0.5rem"></m:Column>
+									</m:columns>
 									<m:items>
-										<!--<m:ColumnListItem>-->
-										<!--	<m:cells>-->
-										<!--		<m:ObjectStatus id="mobTKTMU1"  />-->
-										<!--		<m:Text id="mobTKTMU2"/>-->
-										<!--		<m:Text id="mobTKTMU3"/>-->
-										<!--		<m:Text id="mobTKTMU4"/>-->
-										<!--		<m:Text id="mobTKTMU5"/>-->
-										<!--		<m:Text id="mobTKTMU6"/>-->
-										<!--		<core:Icon src="sap-icon://edit" press="onEditItem"/>-->
-										<!--		<core:Icon src="sap-icon://delete" press="onDeleteItem"/>-->
-										<!--	</m:cells>-->
-										<!--</m:ColumnListItem>-->
+										<m:ColumnListItem>
+											<m:cells>
+												<m:ObjectStatus text="{dealItemModel>Quantity}" />
+												<m:Text text="{dealItemModel>PerDiem}"/>
+												<m:Text text="{dealItemModel>DailyPop}" />
+												<m:Text text="{dealItemModel>NoOfDays}"/>
+												<m:Text text="{dealItemModel>Unit}"/>
+												<m:Text text="{path:'dealItemModel>EndDate', type: 'sap.ui.model.type.Date'}"/>
+												<core:Icon src="sap-icon://edit" press="onEditItem"/>
+												<core:Icon src="sap-icon://delete" press="onDeleteItem"/>
+											</m:cells>
+										</m:ColumnListItem>
 									</m:items>
 								</m:Table>
 							</ObjectPageSubSection>

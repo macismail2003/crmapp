@@ -1,0 +1,26 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog title="Add Items">
+		<content>
+			<f:SimpleForm layout="ResponsiveGridLayout">
+				<f:content>
+					<Label text="Quantity"/>
+					<Input value="{ItemList>/Quantity}"/>
+					<Label text="Per Diem"/>
+					<Input value="{ItemList>/PerDiem}"/>
+					<Label text="Daily Pop"/>
+					<Input value="{ItemList>/DailyPop}"/>
+					<Label text="No. of Days"/>
+					<Input value="{ItemList>/NoOfDays}"/>
+					<Label text="Unit"/>
+					<Input value="{ItemList>/Unit}"/>
+					<Label text="End Date/Time"/>
+					<DatePicker dateValue="{ItemList>/EndDate}"/>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<buttons>
+			<Button text="OK" press="onPressOKAddItem"/>
+			<Button text="Cancel" press="onPressCancel"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>
