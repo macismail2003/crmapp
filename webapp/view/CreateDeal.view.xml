@@ -34,6 +34,17 @@
 													<m:Input/>
 													<m:Label text="Prospect"/>
 													<m:Input/>
+													<m:Label text="Employee Responsible"/>
+													<m:Input id="EmpRes"/>
+													<m:Label text="Location Requirement"/>
+													<m:ComboBox>
+														<m:items>
+															<core:Item key="DelLoc" text="One delivery location"/>
+															<core:Item key="MulLoc" text="Multiple locations within customer’s local region"/>
+															<core:Item key="MulGloLoc" text="Multiple global locations"/>
+															<core:Item key="ExFact" text="Ex-factory"/>
+														</m:items>
+													</m:ComboBox>
 												</f:content>
 											</f:SimpleForm>
 										</m:VBox>

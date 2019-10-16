@@ -8,6 +8,7 @@ sap.ui.define([
 	return BaseController.extend("com.seaco.zcrmapps.zcrmapps.controller.App", {
 
 		onInit : function () {
+			// debugger;
 			// this.getModel("appView").setProperty("/layout", "OneColumn");
 			// debugger;
 			var oViewModel = new JSONModel({
@@ -15,6 +16,7 @@ sap.ui.define([
 				
 			});
 			this.getView().setModel(oViewModel, "dealItemModel");
+			this.getView().byId("EmpRes").setValue(sap.ushell.Container.getUser().getId());
 			this.IID = 0;
 		},
 		
@@ -56,6 +58,12 @@ sap.ui.define([
 					this.byId("itemTable").getModel("dealItemModel").refresh();
 					this._oItemDialog.close();
 					MessageToast.show("Item Added Successfully");
+		},
+		
+		onCancel : function(oEvent){
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			// this.getModel("appView").setProperty("/layout", "OneColumn");
+			oRouter.navTo("master");
 		}
 
 	});
