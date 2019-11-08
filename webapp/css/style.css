@@ -1,0 +1,12 @@
+tr[data-mydata="true"]{	
+  background:   #ff3333 !important;
+}
+
+.bgcolor{
+	background:   #ff3333 !important;
+}
+
+
+.bgcolortrans{
+background-color:   transparent;
+}

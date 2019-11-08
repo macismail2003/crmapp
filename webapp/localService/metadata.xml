@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+	<edmx:DataServices m:DataServiceVersion="2.0" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+		<Schema Namespace="ReturnModel" xmlns="http://schemas.microsoft.com/ado/2008/09/edm"
+			xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+			<EntityType Name="ReturnAuth">
+				<Key>
+					<PropertyRef Name="Customer"/>
+				</Key>
+				<Property Name="Customer" Type="Edm.String" MaxLength="50"/>
+				<Property Name="City" Type="Edm.String" MaxLength="50"/>
+				<Property Name="Role" Type="Edm.String" MaxLength="50"/>
+				<Property Name="AccountId" Type="Edm.Int32" MaxLength="5"/>
+				<Property Name="Name" Type="Edm.String" MaxLength="5"/>
+				<Property Name="Region" Type="Edm.Decimal" MaxLength="5"/>
+			</EntityType>
+			<EntityType Name="SerialNo">
+				<Key>
+					<PropertyRef Name="SerialNo"/>
+				</Key>
+				<Property Name="SerialNo" Type="Edm.String" MaxLength="50"/>
+				<!--<Property Name="TecAsstNo" Type="Edm.String" MaxLength="50"/>-->
+				<!--<Property Name="Material" Type="Edm.String" MaxLength="50"/>-->
+			</EntityType>
+			<EntityType Name="ReturnAuthorization">
+				<Key>
+					<PropertyRef Name="SerialNo"/>
+					<PropertyRef Name="City"/>
+				</Key>
+				<Property Name="SerialNo" Type="Edm.String" MaxLength="50"/>
+				<Property Name="City" Type="Edm.String" MaxLength="50"/>
+				<Property Name="Status" Type="Edm.String" MaxLength="50"/>
+				<Property Name="Depot" Type="Edm.String" MaxLength="5"/>
+				<Property Name="Type" Type="Edm.String" MaxLength="5"/>
+				<Property Name="Customer" Type="Edm.String" MaxLength="5"/>
+				<Property Name="CustomerName" Type="Edm.String" MaxLength="5"/>
+				<Property Name="IntOrd" Type="Edm.String" MaxLength="5"/>
+				<Property Name="Lease" Type="Edm.String" MaxLength="5"/>
+				<Property Name="Comments" Type="Edm.String" MaxLength="50"/>
+				<Property Name="Flag" Type="Edm.Boolean"/>
+				<Property Name="Colour" Type="Edm.String" MaxLength="50"/>
+			</EntityType>
+			<EntityType Name="City">
+				<Key>
+					<PropertyRef Name="Country"/>
+					<PropertyRef Name="Region"/>
+				</Key>
+				<Property Name="Country" Type="Edm.String" MaxLength="50"/>
+				<Property Name="Region" Type="Edm.String" MaxLength="50"/>
+				<Property Name="City" Type="Edm.String" MaxLength="50"/>
+			</EntityType>
+			<EntityContainer Name="ReturnCreate" m:IsDefaultEntityContainer="true" xmlns:p7="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+				<EntitySet EntityType="ReturnModel.ReturnAuth" Name="ReturnAuths"/>
+				<EntitySet EntityType="ReturnModel.SerialNo" Name="SerialNos"/>
+				<EntitySet EntityType="ReturnModel.ReturnAuthorization" Name="ReturnAuthorizationSet"/>
+				<EntitySet EntityType="ReturnModel.City" Name="CitySet"/>
+			</EntityContainer>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

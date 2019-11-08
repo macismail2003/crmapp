@@ -1,0 +1,27 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+  <ViewSettingsDialog confirm="onConfirm">
+    <sortItems>
+      <ViewSettingsItem selected="true" key="SerialNo" text="Serial No"/>
+      <ViewSettingsItem key="City" text="City"/>
+    </sortItems>
+    <!--<groupItems>-->
+    <!--  <ViewSettingsItem key="City" text="City"/>-->
+    <!--</groupItems>-->
+    <filterItems filterItems="{oSerialModel>/Serial}">
+      <ViewSettingsFilterItem key="SerialNo" text="Serial No" multiSelect="false">
+        <items>
+          <ViewSettingsItem key="{oSerialModel>SerialNo}" text="{oSerialModel>SerialNo}"/>
+          <!--<ViewSettingsItem key="City" text="City"/>-->
+        </items>
+      </ViewSettingsFilterItem>
+    </filterItems>
+    <filterItems filterItems="{oSerialModel>/City}">
+      <ViewSettingsFilterItem key="SerialNo" text="City" multiSelect="false">
+        <items>
+          <ViewSettingsItem key="{oSerialModel>City}" text="{oSerialModel>City}"/>
+          <!--<ViewSettingsItem key="City" text="City"/>-->
+        </items>
+      </ViewSettingsFilterItem>
+    </filterItems>
+  </ViewSettingsDialog>
+</core:FragmentDefinition>

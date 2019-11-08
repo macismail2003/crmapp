@@ -1,0 +1,61 @@
+<core:FragmentDefinition xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:table="sap.ui.table" xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:valuehelp="sap.ui.comp.valuehelpdialog" xmlns:fb="sap.ui.comp.filterbar">
+	<Dialog contentHeight="80%" contentWidth="60%" draggable="true" showHeader="false">
+		<Page title="Serial Number">
+			<f:SimpleForm editable="true">
+				<fb:FilterBar advancedMode="true" showGoOnFB="true" search="onSearch">
+					<fb:filterGroupItems>
+						<fb:FilterGroupItem groupName="SerialNo" name="SerialNo" label="Serial No.">
+							<fb:control>
+								<Input id="idSerial" type="Text"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+						<fb:FilterGroupItem groupName="TechAsset" name="TecAsstNo" label="Technical Asset no.">
+							<fb:control>
+								<Input id="idTech" type="Text"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+						<!--<fb:FilterGroupItem groupName="Material" name="Material" label="Material">-->
+						<!--	<fb:control>-->
+						<!--		<Input id="idMaterial" type="Text"/>-->
+						<!--	</fb:control>-->
+						<!--</fb:FilterGroupItem>-->
+					</fb:filterGroupItems>
+				</fb:FilterBar>
+			</f:SimpleForm>
+			<Panel expanded="true">
+				<table:Table id="idSerialTable" rows="{oSerialModel>/Serial}" selectionMode="Single"
+					 rowSelectionChange="onPressConfirmSelectSerial" visibleRowCountMode="Fixed" visibleRowCount="10">
+					<table:columns>
+						<table:Column>
+							<Label text="Serial No."/>
+							<table:template>
+								<Text text="{oSerialModel>SerialNo}" wrapping="true"/>
+							</table:template>
+						</table:Column>
+						<table:Column>
+							<Label text="Technical Asset No."/>
+							<table:template>
+								<Text text="{oSerialModel>TecAsstNo}" wrapping="true"/>
+							</table:template>
+						</table:Column>
+						<table:Column>
+							<Label text="Material"/>
+							<table:template>
+								<Text text="{oSerialModel>Material}" wrapping="true"/>
+							</table:template>
+						</table:Column>
+					</table:columns>
+				</table:Table>
+			</Panel>
+			<footer>
+				<Toolbar>
+					<ToolbarSpacer/>
+					<Button press="onPressConfirmSelectSerial" text="OK"></Button>
+					<Button press="onPressDialogCancel" text="Cancel"></Button>
+				</Toolbar>
+			</footer>
+		</Page>
+	</Dialog>
+</core:FragmentDefinition>

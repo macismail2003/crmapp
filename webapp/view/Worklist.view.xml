@@ -1,0 +1,226 @@
+<mvc:View controllerName="copypastetable.sample_ui_table.controller.Worklist" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:c="copypastetable.sample_ui_table.control" xmlns:f="sap.ui.layout.form" xmlns:table="sap.ui.table" xmlns:core="sap.ui.core">
+	<!--<pages>-->
+	<Page id="page" title="Create Return Authorization">
+		<content>
+			<Panel headerText="Create">
+				<content>
+					<f:SimpleForm id="form" editable="false" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12"
+						adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2"
+						singleContainerFullSize="false">
+						<f:content>
+							<Label class="sapUiSmallMarginEnd sapUiTinyMarginTop" text="Customer"/>
+							<MultiInput class="sapUiSmallMarginEnd" id="multiInput" valueHelpRequest="onValueHelpRequested"/>
+							<Label class="sapUiSmallMarginEnd sapUiTinyMarginTop" text="Customer Name"/>
+							<MultiInput class="sapUiSmallMarginEnd" id="multiInput1" valueHelpRequest="onValueHelpRequested"/>
+							<Label class="sapUiSmallMarginEnd sapUiTinyMarginTop" text="Start Date"/>
+							<DatePicker class="sapUiSmallMarginEnd" id="idStartDate"/>
+							<Label class="sapUiSmallMarginEnd sapUiTinyMarginTop" text="End Date"/>
+							<DatePicker class="sapUiSmallMarginEnd" id="idEndDate"/>
+							<core:Title text=""/>
+							<Label class="sapUiSmallMarginEnd sapUiTinyMarginTop" text="Return Auth"/>
+							<Input class="sapUiSmallMarginEnd" value="0"/>
+							<Label text="Customer and Depot comments "/>
+							<Input/>
+						</f:content>
+					</f:SimpleForm>
+				</content>
+			</Panel>
+			<Panel headerText="Return Authorization" id="idPanel">
+				<content>
+					<!--<c:CopyPasteTable id='idTable' items="{/items}">-->
+					<!--	<c:headerToolbar>-->
+					<!--		<Toolbar>-->
+					<!--			<Title text="Items"/>-->
+					<!--			<ToolbarSpacer/>-->
+					<!--			<Button tooltip="View Settings" icon="sap-icon://add" press="onCreateItems"/>-->
+					<!--			<Button tooltip="Export to Excel" icon="sap-icon://excel-attachment" press="onExport"/>-->
+					<!--		</Toolbar>-->
+					<!--	</c:headerToolbar>-->
+					<!--	<c:items>-->
+					<!--		<ColumnListItem id='idColListTemp' xmlns="sap.m">-->
+					<!--			<customData>-->
+					<!--				<core:CustomData key="mydata" value="{Colour}" writeToDom="true"></core:CustomData>-->
+					<!--			</customData>-->
+					<!--			<cells>-->
+					<!--				<core:Icon src="sap-icon://edit"/>-->
+					<!--				<MultiInput valueHelpRequest="onValueHelpSerialNoRequested" value="{SerialNo}"/>-->
+					<!--				<MultiInput valueHelpRequest="onValueHelpCityRequested" value="{City}"/>-->
+					<!--				<Text text="{Depot}"/>-->
+					<!--				<Text text="{Type}"/>-->
+					<!--				<Text text="{Lease}"/>-->
+					<!--				<Input value="{Comments}"/>-->
+					<!--				<core:Icon src="sap-icon://edit" press="onEditItem" id="idEdit" />-->
+					<!--				<core:Icon src="sap-icon://delete" press="onDeleteItem" id="idDelete"/>-->
+					<!--			</cells>-->
+					<!--		</ColumnListItem>-->
+					<!--	</c:items>-->
+					<!--	<c:columns>-->
+					<!--		<Column >-->
+					<!--		</Column>-->
+					<!--		<Column>-->
+					<!--			<header>-->
+					<!--				<Text text="Serial No."></Text>-->
+					<!--			</header>-->
+					<!--		</Column>-->
+					<!--		<Column >-->
+					<!--			<header>-->
+					<!--				<Text text="City"></Text>-->
+					<!--			</header>-->
+					<!--		</Column>-->
+					<!--		<Column >-->
+					<!--			<header>-->
+					<!--				<Text text="Depot"></Text>-->
+					<!--			</header>-->
+					<!--		</Column>-->
+					<!--		<Column >-->
+					<!--			<header>-->
+					<!--				<Text text="Type"></Text>-->
+					<!--			</header>-->
+					<!--		</Column>-->
+					<!--		<Column >-->
+					<!--			<header>-->
+					<!--				<Text text="Lease #"></Text>-->
+					<!--			</header> -->
+					<!--		</Column>-->
+					<!--		<Column >-->
+					<!--			<header>-->
+					<!--				<Text text="Comments"></Text>-->
+					<!--			</header> -->
+					<!--		</Column>-->
+					<!--		<Column class="sapUiTinyMarginEnd"/>-->
+					<!--		<Column width="0.5rem"></Column>-->
+					<!--	</c:columns>-->
+					<!--</c:CopyPasteTable>-->
+					<c:CopyPasteTable id="idTable" rows="{/items}" selectionMode="None" sort="onSort">
+						<!--<c:ColumnMenu>-->
+							<!--<c:customData>-->
+							<!--		<core:CustomData key="mydata" value="{Colour}" writeToDom="true"></core:CustomData>-->
+							<!--	</c:customData>-->
+						<!--</c:ColumnMenu>-->
+						
+						<c:extension>
+							<Toolbar design="Transparent" class="sapUiMediumMarginTop">
+								<Title text="Items" class="sapUiSmallMarginBottom"/>
+								<ToolbarSpacer/>
+								<Button tooltip="View Settings" icon="sap-icon://add" press="onCreateItems"/>
+								<Button tooltip="Export to Excel" icon="sap-icon://excel-attachment" press="onExport"/>
+							</Toolbar>
+						</c:extension>
+						<!--<c:coloumnMenu>-->
+						<!--	<table:customData>-->
+						<!--			<core:CustomData key="mydata" value="{Colour}" writeToDom="true"></core:CustomData>-->
+						<!--		</table:customData>-->
+						<!--</c:coloumnMenu>-->
+						<c:columns>
+							<!--<customData>-->
+							<!--		<core:CustomData key="mydata" value="{Colour}" writeToDom="true"></core:CustomData>-->
+							<!--	</customData>-->
+							<table:Column>
+									
+								<table:template>
+									<core:Icon src="{path: 'Status', formatter: '.formatter.statusText'}" color="{path: 'Status', formatter: '.formatter.statusColor'}"/>
+										
+								</table:template>
+							</table:Column>
+							<table:Column filterProperty="SerialNo" sortProperty="SerialNo" width="auto">
+								<!--<table:customData>-->
+								<!--	<core:CustomData key="p13nData" value='\{"columnKey": "SerialNo", "columnIndex":"0", "leadingProperty": "SerialNo"}'/>-->
+								<!--</table:customData>-->
+								<Label text="Serial No"/>
+								<table:template>
+									<MultiInput valueHelpRequest="onValueHelpSerialNoRequested" value="{SerialNo}" editable="{Flag}"/>
+								<!--	<customData>-->
+								<!--	<core:CustomData key="mydata" value="{Colour}" writeToDom="true"></core:CustomData>-->
+								<!--</customData>-->
+									
+								</table:template>
+							</table:Column>
+							<table:Column filterProperty="City" sortProperty="City" width="auto">
+								<!--<table:customData>-->
+								<!--	<core:CustomData key="mydata" value="{Colour}" writeToDom="true"></core:CustomData>-->
+								<!--</table:customData>-->
+								<Label text="City"/>
+								<table:template>
+									<MultiInput valueHelpRequest="onValueHelpCityRequested" value="{City}" editable="{Flag}"/>
+								</table:template>
+							</table:Column>
+							<table:Column filterProperty="Depot" sortProperty="Depot" width="auto">
+								<!--<table:customData>-->
+								<!--	<core:CustomData key="p13nData1" value='\{"columnKey": "City", "columnIndex":"1", "leadingProperty": "City"}'/>-->
+								<!--</table:customData>-->
+								<Label text="Depot"/>
+								<table:template>
+									<Text text="{Depot}"/>
+								</table:template>
+							</table:Column>
+							<table:Column filterProperty="Type" sortProperty="Type" width="auto">
+								<Label text="Type"/>
+								<table:template>
+									<Text text="{Type}"/>
+								</table:template>
+							</table:Column>
+							<table:Column filterProperty="Lease" sortProperty="Lease" width="auto">
+								<Label text="Lease"/>
+								<table:template>
+									<Text text="{Lease}"/>
+								</table:template>
+							</table:Column>
+							<table:Column filterProperty="Comments" sortProperty="Comments" width="auto">
+								<Label text="Comment"/>
+								<table:template>
+									<Input value="{Comments}" editable="{Flag}"/>
+								</table:template>
+							</table:Column>
+							<table:Column>
+								<table:template>
+									<core:Icon src="sap-icon://edit" press="onEditItem" id="idEdit" visible="{= !${Flag}}"/>
+								</table:template>
+							</table:Column>
+							<table:Column >
+								<table:template>
+									<core:Icon src="sap-icon://delete" press="onDeleteItem" id="idDelete" visible="{= !${Flag}}"/>
+								</table:template>
+							</table:Column>
+						</c:columns>
+					</c:CopyPasteTable>
+					
+					
+		<!--			<table:Table id="WorkCenterTable" rows="{/items}" selectionMode="None">-->
+		<!--	<table:columns>-->
+		<!--		<table:Column width="auto">-->
+		<!--			<Label text="{i18n>WorkCenterId}"/>-->
+		<!--			<table:template>-->
+		<!--				<Text text="{SerialNo}" wrapping="false"/>-->
+		<!--			</table:template>-->
+		<!--		</table:Column>-->
+		<!--		<table:Column width="auto">-->
+		<!--			<Label text="{i18n>WorkCenterId}"/>-->
+		<!--			<table:template>-->
+		<!--				<Text text="{City}" wrapping="false"/>-->
+		<!--			</table:template>-->
+		<!--		</table:Column>-->
+				
+				
+				
+				
+		<!--	</table:columns>-->
+		<!--</table:Table>-->
+				</content>
+			</Panel>
+		</content>
+		<footer>
+			<OverflowToolbar>
+				<Button id="messagePopoverBtn" icon="sap-icon://message-popup" type="Emphasized" text="{=${message>/}.length}"
+				visible="{=!!${message>/}.length}" press="handleMessagePopoverPress"/>
+				<ToolbarSpacer/>
+				<!--<ToolbarSpacer/>-->
+				<Button text="Validate" press="onCheck" type="Emphasized"/>
+				<!--<Button text="Validate" press="onValidate"/>-->
+				<Button text="Save" press="onSave"/>
+				<Button text="Send Notifiation" press="onPressNotification"/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+	<!--</pages>-->
+</mvc:View>
