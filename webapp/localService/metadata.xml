@@ -31,12 +31,14 @@
 				<Property Name="City" Type="Edm.String" MaxLength="50"/>
 				<Property Name="Status" Type="Edm.String" MaxLength="50"/>
 				<Property Name="Depot" Type="Edm.String" MaxLength="5"/>
+				<Property Name="UnitType" Type="Edm.String" MaxLength="5"/>
 				<Property Name="Type" Type="Edm.String" MaxLength="5"/>
 				<Property Name="Customer" Type="Edm.String" MaxLength="5"/>
 				<Property Name="CustomerName" Type="Edm.String" MaxLength="5"/>
 				<Property Name="IntOrd" Type="Edm.String" MaxLength="5"/>
 				<Property Name="Lease" Type="Edm.String" MaxLength="5"/>
 				<Property Name="Comments" Type="Edm.String" MaxLength="50"/>
+				<Property Name="LastCargo" Type="Edm.String" MaxLength="70"/>
 				<Property Name="Flag" Type="Edm.Boolean"/>
 				<Property Name="Colour" Type="Edm.String" MaxLength="50"/>
 			</EntityType>

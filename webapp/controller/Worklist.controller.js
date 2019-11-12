@@ -12,8 +12,9 @@ sap.ui.define([
 	"sap/m/MessageToast",
 	"sap/m/PDFViewer",
 	"sap/ui/model/Sorter"
-], function (BaseController, JSONModel, formatter, Filter, FilterOperator,Element, Export, ExportTypeCSV, MessageBox, Spreadsheet, MessageToast,
-PDFViewer, Sorter) {
+], function (BaseController, JSONModel, formatter, Filter, FilterOperator, Element, Export, ExportTypeCSV, MessageBox, Spreadsheet,
+	MessageToast,
+	PDFViewer, Sorter) {
 	"use strict";
 
 	return BaseController.extend("copypastetable.sample_ui_table.controller.Worklist", {
@@ -28,7 +29,7 @@ PDFViewer, Sorter) {
 		 * Called when the worklist controller is instantiated.
 		 * @public
 		 */
-		onInit : function () {
+		onInit: function () {
 			var oDate = new Date();
 			var oMonth = oDate.getMonth();
 			var oYear = oDate.getFullYear();
@@ -40,9 +41,13 @@ PDFViewer, Sorter) {
 			this.getView().byId("idEndDate").setDateValue(new Date(oYear, oMonth + 1, 0));
 			// this.getView().byId("idEndDate").setMaxDate(new Date());
 			this.getOwnerComponent().getModel().setDeferredGroups(["ReadReturnAuthorization"]);
-			var oModel = new JSONModel({});
+			var oModel = new JSONModel({
+				editDelete: false,
+				// lastCargo : false
+			});
 			this.setModel(oModel, "data");
-				var model = new sap.ui.model.json.JSONModel({
+			// this.getModel("data").setProperty("/visibility" , false);
+			var model = new sap.ui.model.json.JSONModel({
 				items: [{
 					Status: "",
 					City: "",
@@ -82,7 +87,7 @@ PDFViewer, Sorter) {
 				}.bind(this)
 			});
 		},
-		
+
 		onValueHelpSerialNoRequested: function (oEvent) {
 			var oTableObject = oEvent.getSource().getBindingContext().getObject();
 			var sPath = oEvent.getSource().getBindingContext().sPath.split("/")[2];
@@ -96,7 +101,7 @@ PDFViewer, Sorter) {
 			}
 			this._oSerialSearchDialog.open();
 		},
-		
+
 		onValueHelpCityRequested: function (oEvent) {
 			var oTableObject = oEvent.getSource().getBindingContext().getObject();
 			var sPath = oEvent.getSource().getBindingContext().sPath.split("/")[2];
@@ -110,11 +115,11 @@ PDFViewer, Sorter) {
 			}
 			this._oCitySearchDialog.open();
 		},
-		
+
 		onPressDialogCancel: function (oEvent) {
 			oEvent.getSource().getParent().getParent().getParent().close();
 		},
-		
+
 		onPressConfirmSelectSerial: function (oEvent) {
 			var oTable = sap.ui.core.Fragment.byId("idSerialSearchDialog", "idSerialTable");
 			var iSelectedIndex = oTable.getSelectedIndex();
@@ -133,7 +138,7 @@ PDFViewer, Sorter) {
 			}
 			oEvent.getSource().getParent().getParent().getParent().close();
 		},
-		
+
 		onPressConfirmSelectCity: function (oEvent) {
 			var oTable = sap.ui.core.Fragment.byId("idCitySearchDialog", "idCityTable");
 			var iSelectedIndex = oTable.getSelectedIndex();
@@ -151,7 +156,7 @@ PDFViewer, Sorter) {
 			}
 			oEvent.getSource().getParent().getParent().getParent().close();
 		},
-		
+
 		onCreateItems: function (oEvent) {
 			var oTable = this.getView().byId("idTable").getModel().getData("items").items;
 			var oLength = oTable.length;
@@ -167,7 +172,7 @@ PDFViewer, Sorter) {
 			this.getView().byId("idTable").getModel().refresh();
 
 		},
-		
+
 		handleMessagePopoverPress: function (oEvent) {
 			if (!this.oErrorPopover) {
 				this.oErrorPopover = sap.ui.xmlfragment("copypastetable.sample_ui_table.view.fragments.MessagePopover", this);
@@ -199,7 +204,7 @@ PDFViewer, Sorter) {
 				oViewModel.setProperty("/Errors/visible", false);
 			}
 		},
-		
+
 		activeTitle: function (oEvent) {
 			var that = this;
 			var oItem = oEvent.getParameter("item"),
@@ -222,7 +227,7 @@ PDFViewer, Sorter) {
 
 				}
 			}
-			
+
 			// for (var i = 0; i < aTable.length; i++) {
 			// 	if (i === iIndex) {
 			// 		aTable[iIndex].Colour = "true";
@@ -232,13 +237,11 @@ PDFViewer, Sorter) {
 
 			// 	}
 			// }
-			
-			
-			
+
 			this.getView().getModel().setProperty("/items", aTable);
 			this.oErrorPopover.close();
 		},
-		
+
 		onCheck: function () {
 			var iNumber = 0,
 				a;
@@ -320,15 +323,15 @@ PDFViewer, Sorter) {
 									}
 								}
 								var oTableLength = a.length;
-								for (var k = 0; k < iNumber; k++) {
-									var y = {
-										Status: "",
-										City: "",
-										Flag: true
-									};
-									a[oTableLength] = y;
-									oTableLength++;
-								}
+								// for (var k = 0; k < iNumber; k++) {
+								// 	var y = {
+								// 		Status: "",
+								// 		City: "",
+								// 		Flag: true
+								// 	};
+								// 	a[oTableLength] = y;
+								// 	oTableLength++;
+								// }
 								this.getView().getModel().setProperty("/items", a);
 								this.initializeMessageManager(this.getView().getModel());
 								var oMessageManager = this.getMessageManager();
@@ -343,20 +346,46 @@ PDFViewer, Sorter) {
 				}.bind(this)
 			});
 		},
-		
+
 		onSave: function () {
-			var oTable = this.getView().byId("idTable").getModel().getData("items").items;
-			var i;
+			
+			var oTable = this.getView().byId("idTable").getRows();
+			// var oTable = this.getView().byId("idTable").getModel().getData("items").items;
+			var i, bFlag = true;
+			this.initializeMessageManager(this.getView().getModel());
+			var oMessageManager = this.getMessageManager();
+			oMessageManager.removeAllMessages();
+			for (var j = 0; j < oTable.length; j++) {
+				// if (oTable[j].UnitType === 'tank' && oTable[j].LastCargo === "") {
+				if (oTable[j].getBindingContext() !== null && (oTable[j].getBindingContext().getObject().UnitType === 'tank' && oTable[j].getBindingContext().getObject().LastCargo === "") ){
+					this.getView().byId("idTable").getRows()[j].getCells("LastCargo")[8].setValueState("Error");
+					this.getView().byId("idTable").getRows()[j].getCells("LastCargo")[8].setValueStateText("Please enter Last Cargo");
+					// oTable[i].LastCargo
+					// var sErrorText = "Error for" + " " + oTable[i].LastCargo;
+					// var a = this.getView().getModel();
+					// this.addMessages(oTable[i].Status, sErrorText, sErrorText, a);
+
+					bFlag = false;
+					break;
+				} else {
+					this.getView().byId("idTable").getRows()[j].getCells("LastCargo")[8].setValueState("None");
+				}
+			}
+			if(bFlag){
 			for (i = 0; i < oTable.length; i++) {
-				if (oTable[i] != undefined) {
-					oTable[i].Flag = false;
+				if (oTable[i].getBindingContext() !== null) {
+					oTable[i].getBindingContext().getObject().Flag = false;
 				}
 			}
 			this.getView().getModel().refresh();
+			this.getView().getModel("data").setProperty("/editDelete", true);
+			}
+
+			// this.getView().getModel("data").setProperty("/lastCargo" , true);
 		},
 
 		onEditItem: function (oEvent) {
-			
+
 			var oTableObject = oEvent.getSource().getBindingContext().getObject();
 			var sPath = oEvent.getSource().getBindingContext().sPath.split("/")[2];
 			// var a = oEvent.getSource().getId();
@@ -383,7 +412,7 @@ PDFViewer, Sorter) {
 			// }
 			this.getView().getModel().refresh();
 		},
-		
+
 		onExport: function () {
 			var aCols, aProducts, oSettings, oSheet;
 
@@ -489,31 +518,31 @@ PDFViewer, Sorter) {
 			doc.autoTable(columns, rows);
 
 			doc.save('table.pdf');
-		},
-		
-		onSort: function(oEvent){
-			debugger;
-			var aList = [];
-          var oTable = this.getView().byId("idTable");
-          var oItems = oTable.getBinding("rows");
-          //var oTable = this.getView().getModel();
-          //var oItems = oTable.getProperty("/items");
-          var oBindingPath = oEvent.getParameter("column").getProperty("sortProperty");
-          for (var i = 0; i < oItems.oList.length; i++) {
-
-				if (oItems.oList[i].City !== "") {
-					aList.push(oItems.oList[i]);
-				}
-			}
-			oItems.oList = aList;
-          //var oSorter = new Sorter(oBindingPath);
-          //oItems.sort(oSorter);
-          var aSorters = [];
-          aSorters.push(new sap.ui.model.Sorter(oBindingPath));
-          oItems.sort(aSorters);
-          this.getView().getModel().setProperty("/items", oItems.oList);
-          //this._oResponsivePopover.close();
 		}
+
+		// onSort: function (oEvent) {
+		// 	debugger;
+		// 	var aList = [];
+		// 	var oTable = this.getView().byId("idTable");
+		// 	var oItems = oTable.getBinding("rows");
+		// 	//var oTable = this.getView().getModel();
+		// 	//var oItems = oTable.getProperty("/items");
+		// 	var oBindingPath = oEvent.getParameter("column").getProperty("sortProperty");
+		// 	for (var i = 0; i < oItems.oList.length; i++) {
+
+		// 		if (oItems.oList[i].City !== "") {
+		// 			aList.push(oItems.oList[i]);
+		// 		}
+		// 	}
+		// 	oItems.oList = aList;
+		// 	//var oSorter = new Sorter(oBindingPath);
+		// 	//oItems.sort(oSorter);
+		// 	var aSorters = [];
+		// 	aSorters.push(new sap.ui.model.Sorter(oBindingPath));
+		// 	oItems.sort(aSorters);
+		// 	//this.getView().getModel().setProperty("/items", oItems.oList);
+		// 	//this._oResponsivePopover.close();
+		// }
 
 	});
 });

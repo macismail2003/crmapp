@@ -92,7 +92,7 @@
 					<!--		<Column width="0.5rem"></Column>-->
 					<!--	</c:columns>-->
 					<!--</c:CopyPasteTable>-->
-					<c:CopyPasteTable id="idTable" rows="{/items}" selectionMode="None" sort="onSort">
+					<c:CopyPasteTable id="idTable" rows="{/items}" selectionMode="None" sort="onSort" >
 						<!--<c:ColumnMenu>-->
 							<!--<c:customData>-->
 							<!--		<core:CustomData key="mydata" value="{Colour}" writeToDom="true"></core:CustomData>-->
@@ -155,6 +155,12 @@
 								</table:template>
 							</table:Column>
 							<table:Column filterProperty="Type" sortProperty="Type" width="auto">
+								<Label text="Unit Type"/>
+								<table:template>
+									<Text text="{UnitType}"/>
+								</table:template>
+							</table:Column>
+							<table:Column filterProperty="Type" sortProperty="Type" width="auto">
 								<Label text="Type"/>
 								<table:template>
 									<Text text="{Type}"/>
@@ -173,11 +179,17 @@
 								</table:template>
 							</table:Column>
 							<table:Column>
+								<Label text="Last Cargo"/>
+								<table:template>
+									<Input value="{LastCargo}" editable="{= ${UnitType} === 'tank' &amp;&amp; ${Flag}}"/>
+								</table:template>
+							</table:Column>
+							<table:Column visible="{ path:'data>/editDelete'}">
 								<table:template>
 									<core:Icon src="sap-icon://edit" press="onEditItem" id="idEdit" visible="{= !${Flag}}"/>
 								</table:template>
 							</table:Column>
-							<table:Column >
+							<table:Column visible="{ path:'data>/editDelete'}">
 								<table:template>
 									<core:Icon src="sap-icon://delete" press="onDeleteItem" id="idDelete" visible="{= !${Flag}}"/>
 								</table:template>

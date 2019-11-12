@@ -10,7 +10,9 @@
 	"Lease": "1 year",
 	"Comments": "",
 	"Flag": true,
-	"Colour": ""
+	"Colour": "",
+	"UnitType": "tank",
+	"LastCargo": ""
 }, {
 	"SerialNo": "APLU9008541",
 	"City": "Singapore",
@@ -23,7 +25,9 @@
 	"Lease": "2 year",
 	"Comments": "",
 	"Flag": true,
-	"Colour": ""
+	"Colour": "",
+	"UnitType": "box",
+	"LastCargo": ""
 }, {
 	"SerialNo": "APLU9008540",
 	"City": "China",
@@ -36,7 +40,9 @@
 	"Lease": "3 year",
 	"Comments": "",
 	"Flag": true,
-	"Colour": ""
+	"Colour": "",
+	"UnitType": "tank",
+	"LastCargo": ""
 }, {
 	"SerialNo": "APLU9008519",
 	"City": "Bejing",
@@ -49,7 +55,9 @@
 	"Lease": "1 year",
 	"Comments": "",
 	"Flag": true,
-	"Colour": ""
+	"Colour": "",
+	"UnitType": "box",
+	"LastCargo": ""
 }, {
 	"SerialNo": "APLU9008518",
 	"City": "Singapore",
@@ -62,5 +70,7 @@
 	"Lease": "4 year",
 	"Comments": "",
 	"Flag": true,
-	"Colour": ""
+	"Colour": "",
+	"UnitType": "box",
+	"LastCargo": ""
 }]
